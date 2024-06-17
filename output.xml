@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.12 on win32)" generated="20240617 15:39:12.686" rpa="true" schemaversion="4">
+<suite id="s1" name="Tasks" source="c:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\tasks.robot">
+<test id="s1-t1" name="Whatsapp Send Message" line="13">
+<kw name="Get File" library="OperatingSystem">
+<var>${json_content}</var>
+<arg>${JSON_FILE_PATH}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240617 15:39:13.904" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\data.json"&gt;C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\data.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240617 15:39:13.904" level="INFO">${json_content} = [
+  {
+    "name": "Cuisine De Saffron Leaf",
+    "address": "Shop 14, Pacific Hill, Mussoorie Diversion, Malsi, Dehradun",
+    "phoneNumbers": ["91940001791"]
+  },
+  {
+    "name": "Kumar Sweet Shop",
+...</msg>
+<status status="PASS" starttime="20240617 15:39:13.904" endtime="20240617 15:39:13.904"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${restaurants}</var>
+<arg>json.loads('''${json_content}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240617 15:39:13.915" level="INFO">${restaurants} = [{'name': 'Cuisine De Saffron Leaf', 'address': 'Shop 14, Pacific Hill, Mussoorie Diversion, Malsi, Dehradun', 'phoneNumbers': ['91940001791']}, {'name': 'Kumar Sweet Shop', 'address': 'R1, Rajpur Roa...</msg>
+<status status="PASS" starttime="20240617 15:39:13.915" endtime="20240617 15:39:13.915"/>
+</kw>
+<kw name="Windows Run" library="RPA.Windows">
+<arg>whatsapp.exe.lnk</arg>
+<tag>window</tag>
+<doc>Use Windows Run window to launch an application.</doc>
+<msg timestamp="20240617 15:39:13.915" level="INFO">Sending keys '{Win}r' to element: &lt;module 'uiautomation' from 'c:\\ProgramData\\robocorp\\ht\\b15f01f_b1f3c24_691db988\\lib\\site-packages\\uiautomation\\__init__.py'&gt;</msg>
+<msg timestamp="20240617 15:39:14.503" level="INFO">Sending keys 'whatsapp.exe.lnk' to element: &lt;module 'uiautomation' from 'c:\\ProgramData\\robocorp\\ht\\b15f01f_b1f3c24_691db988\\lib\\site-packages\\uiautomation\\__init__.py'&gt;</msg>
+<msg timestamp="20240617 15:39:15.284" level="INFO">Sending keys '{Enter}' to element: &lt;module 'uiautomation' from 'c:\\ProgramData\\robocorp\\ht\\b15f01f_b1f3c24_691db988\\lib\\site-packages\\uiautomation\\__init__.py'&gt;</msg>
+<status status="PASS" starttime="20240617 15:39:13.915" endtime="20240617 15:39:18.834"/>
+</kw>
+<kw name="Control Window" library="RPA.Windows">
+<arg>WhatsApp</arg>
+<tag>window</tag>
+<doc>Controls the window defined by the locator.</doc>
+<msg timestamp="20240617 15:39:18.860" level="INFO">Getting element with locator: WhatsApp and type:WindowControl</msg>
+<msg timestamp="20240617 15:39:18.860" level="INFO">Resulted root element: WindowsElement(item=&lt;uiautomation.uiautomation.PaneControl object at 0x000002630E1D9D20&gt;, locator='WhatsApp and type:WindowControl', name='Desktop 1', automation_id='', control_type='PaneControl', class_name='#32769', left=0, right=1920, top=0, bottom=1080, width=1920, height=1080, xcenter=960, ycenter=540)</msg>
+<msg timestamp="20240617 15:39:18.860" level="INFO">Locator 'WhatsApp and type:WindowControl' produced matcher: MatchObject(locators=[('Name', 'WhatsApp', 0), ('ControlType', 'WindowControl', 0)], _classes=set(), max_level=0)</msg>
+<msg timestamp="20240617 15:39:18.952" level="INFO">Returning element: WindowsElement(item=&lt;uiautomation.uiautomation.WindowControl object at 0x000002630E1D9660&gt;, locator='WhatsApp and type:WindowControl', name='WhatsApp', automation_id='', control_type='WindowControl', class_name='ApplicationFrameWindow', left=-9, right=1929, top=-9, bottom=1029, width=1938, height=1038, xcenter=960, ycenter=510)</msg>
+<status status="PASS" starttime="20240617 15:39:18.838" endtime="20240617 15:39:19.455"/>
+</kw>
+<for flavor="IN">
+<var>${restaurant}</var>
+<value>@{restaurants}</value>
+<iter>
+<var name="${restaurant}">{'name': 'Cuisine De Saffron Leaf', 'address': 'Shop 14, Pacific Hill, Mussoorie Diversion, Malsi, Dehradun', 'phoneNumbers': ['91940001791']}</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${phone_number}</var>
+<arg>${restaurant['phoneNumbers'][0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240617 15:39:19.468" level="INFO">${phone_number} = 91940001791</msg>
+<status status="PASS" starttime="20240617 15:39:19.455" endtime="20240617 15:39:19.471"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${restaurant_name}</var>
+<arg>${restaurant['name']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240617 15:39:19.471" level="INFO">${restaurant_name} = Cuisine De Saffron Leaf</msg>
+<status status="PASS" starttime="20240617 15:39:19.471" endtime="20240617 15:39:19.471"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${status}</var>
+<arg>Send Whatsapp Message</arg>
+<arg>${phone_number}</arg>
+<arg>${restaurant_name}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Send Whatsapp Message">
+<arg>${phone_number}</arg>
+<arg>${restaurant_name}</arg>
+<kw name="Click" library="RPA.Windows">
+<arg>id:SearchQueryTextBox</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<msg timestamp="20240617 15:39:19.487" level="INFO">Getting element with locator: id:SearchQueryTextBox</msg>
+<msg timestamp="20240617 15:39:19.490" level="INFO">Resulted root element: WindowsElement(item=&lt;uiautomation.uiautomation.WindowControl object at 0x000002630E1D9660&gt;, locator='WhatsApp and type:WindowControl', name='WhatsApp', automation_id='', control_type='WindowControl', class_name='ApplicationFrameWindow', left=-9, right=1929, top=-9, bottom=1029, width=1938, height=1038, xcenter=960, ycenter=510)</msg>
+<msg timestamp="20240617 15:39:19.490" level="INFO">Locator 'id:SearchQueryTextBox' produced matcher: MatchObject(locators=[('AutomationId', 'SearchQueryTextBox', 0)], _classes=set(), max_level=0)</msg>
+<msg timestamp="20240617 15:39:19.638" level="INFO">Returning element: WindowsElement(item=&lt;uiautomation.uiautomation.EditControl object at 0x000002630E1DB070&gt;, locator='id:SearchQueryTextBox', name='Search or start a new chat', automation_id='SearchQueryTextBox', control_type='EditControl', class_name='TextBox', left=86, right=572, top=130, bottom=170, width=486, height=40, xcenter=329, ycenter=150)</msg>
+<status status="PASS" starttime="20240617 15:39:19.481" endtime="20240617 15:39:20.212"/>
+</kw>
+<kw name="Press Keys" library="RPA.Desktop">
+<arg>ctrl</arg>
+<arg>a</arg>
+<doc>Press multiple keys down simultaneously.</doc>
+<msg timestamp="20240617 15:39:20.228" level="INFO">Pressing keys: Key.ctrl, 'a'</msg>
+<status status="PASS" starttime="20240617 15:39:20.212" endtime="20240617 15:39:20.235"/>
+</kw>
+<kw name="Send Keys" library="RPA.Windows">
+<arg>id:SearchQueryTextBox</arg>
+<arg>${phone_number}</arg>
+<tag>action</tag>
+<tag>keyboard</tag>
+<doc>Send keys to desktop, current window or to Control element
+defined by given locator.</doc>
+<msg timestamp="20240617 15:39:20.243" level="INFO">Getting element with locator: id:SearchQueryTextBox</msg>
+<msg timestamp="20240617 15:39:20.245" level="INFO">Resulted root element: WindowsElement(item=&lt;uiautomation.uiautomation.WindowControl object at 0x000002630E1D9660&gt;, locator='WhatsApp and type:WindowControl', name='WhatsApp', automation_id='', control_type='WindowControl', class_name='ApplicationFrameWindow', left=-9, right=1929, top=-9, bottom=1029, width=1938, height=1038, xcenter=960, ycenter=510)</msg>
+<msg timestamp="20240617 15:39:20.245" level="INFO">Locator 'id:SearchQueryTextBox' produced matcher: MatchObject(locators=[('AutomationId', 'SearchQueryTextBox', 0)], _classes=set(), max_level=0)</msg>
+<msg timestamp="20240617 15:39:20.327" level="INFO">Returning element: WindowsElement(item=&lt;uiautomation.uiautomation.EditControl object at 0x000002630E1DADA0&gt;, locator='id:SearchQueryTextBox', name='Search or start a new chat', automation_id='SearchQueryTextBox', control_type='EditControl', class_name='TextBox', left=86, right=572, top=130, bottom=170, width=486, height=40, xcenter=329, ycenter=150)</msg>
+<msg timestamp="20240617 15:39:20.334" level="INFO">Sending keys '91940001791' to element: ControlType: EditControl    ClassName: TextBox    AutomationId: SearchQueryTextBox    Rect: (86,130,572,170)[486x40]    Name: 'Search or start a new chat'    Handle: 0x0(0)</msg>
+<status status="PASS" starttime="20240617 15:39:20.239" endtime="20240617 15:39:21.016"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240617 15:39:24.020" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240617 15:39:21.016" endtime="20240617 15:39:24.020"/>
+</kw>
+<kw name="Click" library="RPA.Windows">
+<arg>id:ChatsListItem</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<msg timestamp="20240617 15:39:24.029" level="INFO">Getting element with locator: id:ChatsListItem</msg>
+<msg timestamp="20240617 15:39:24.029" level="INFO">Resulted root element: WindowsElement(item=&lt;uiautomation.uiautomation.WindowControl object at 0x000002630E1D9660&gt;, locator='WhatsApp and type:WindowControl', name='WhatsApp', automation_id='', control_type='WindowControl', class_name='ApplicationFrameWindow', left=-9, right=1929, top=-9, bottom=1029, width=1938, height=1038, xcenter=960, ycenter=510)</msg>
+<msg timestamp="20240617 15:39:24.032" level="INFO">Locator 'id:ChatsListItem' produced matcher: MatchObject(locators=[('AutomationId', 'ChatsListItem', 0)], _classes=set(), max_level=0)</msg>
+<msg timestamp="20240617 15:39:34.178" level="INFO">2024-06-17 15:39:34.177 locators.py[274] _get_control_from_params -&gt; Find Control Timeout(10s): {AutomationId: 'ChatsListItem'}</msg>
+<msg timestamp="20240617 15:39:34.178" level="FAIL">ElementNotFound: Element not found with locator 'id:ChatsListItem'</msg>
+<status status="FAIL" starttime="20240617 15:39:24.020" endtime="20240617 15:39:34.181"/>
+</kw>
+<kw name="Click" library="RPA.Windows">
+<arg>id:InputBarTextBox</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:34.181" endtime="20240617 15:39:34.181"/>
+</kw>
+<kw name="Press Keys" library="RPA.Desktop">
+<arg>ctrl</arg>
+<arg>v</arg>
+<doc>Press multiple keys down simultaneously.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:34.181" endtime="20240617 15:39:34.181"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:34.181" endtime="20240617 15:39:34.181"/>
+</kw>
+<kw name="Send Keys" library="RPA.Windows">
+<arg>id:CaptionEditBox</arg>
+<arg>Hello, ${restaurant_name}</arg>
+<tag>action</tag>
+<tag>keyboard</tag>
+<doc>Send keys to desktop, current window or to Control element
+defined by given locator.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:34.181" endtime="20240617 15:39:34.194"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:34.195" endtime="20240617 15:39:34.195"/>
+</kw>
+<kw name="Click" library="RPA.Windows">
+<arg>id:SubmitButton</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:34.197" endtime="20240617 15:39:34.197"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:34.197" endtime="20240617 15:39:34.197"/>
+</kw>
+<status status="FAIL" starttime="20240617 15:39:19.481" endtime="20240617 15:39:34.197"/>
+</kw>
+<msg timestamp="20240617 15:39:34.197" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20240617 15:39:19.471" endtime="20240617 15:39:34.197"/>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Log Error</arg>
+<arg>${restaurant}</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<msg timestamp="20240617 15:39:34.197" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<kw name="Log Error">
+<arg>${restaurant}</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${errors}</var>
+<arg>${ERROR_FILE_PATH}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240617 15:39:34.212" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json"&gt;C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240617 15:39:34.212" level="INFO">${errors} = []
+</msg>
+<status status="PASS" starttime="20240617 15:39:34.212" endtime="20240617 15:39:34.212"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${errors}</var>
+<arg>json.loads('''${errors}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240617 15:39:34.226" level="INFO">${errors} = []</msg>
+<status status="PASS" starttime="20240617 15:39:34.212" endtime="20240617 15:39:34.228"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${errors}</arg>
+<arg>${restaurant}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20240617 15:39:34.229" endtime="20240617 15:39:34.231"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${errors}</var>
+<arg>json.dumps(${errors})</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240617 15:39:34.233" level="INFO">${errors} = [{"name": "Cuisine De Saffron Leaf", "address": "Shop 14, Pacific Hill, Mussoorie Diversion, Malsi, Dehradun", "phoneNumbers": ["91940001791"]}]</msg>
+<status status="PASS" starttime="20240617 15:39:34.232" endtime="20240617 15:39:34.233"/>
+</kw>
+<kw name="Create File" library="OperatingSystem">
+<arg>${ERROR_FILE_PATH}</arg>
+<arg>${errors}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<msg timestamp="20240617 15:39:34.233" level="INFO" html="true">Created file '&lt;a href="file://C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json"&gt;C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240617 15:39:34.233" endtime="20240617 15:39:34.233"/>
+</kw>
+<status status="PASS" starttime="20240617 15:39:34.197" endtime="20240617 15:39:34.233"/>
+</kw>
+<status status="PASS" starttime="20240617 15:39:34.197" endtime="20240617 15:39:34.241"/>
+</kw>
+<status status="PASS" starttime="20240617 15:39:19.455" endtime="20240617 15:39:34.241"/>
+</iter>
+<iter>
+<var name="${restaurant}">{'name': 'Kumar Sweet Shop', 'address': 'R1, Rajpur Road, Chukkuwala, Dehradun', 'phoneNumbers': ['00001822750']}</var>
+<kw name="Set Variable" library="BuiltIn">
+<var>${phone_number}</var>
+<arg>${restaurant['phoneNumbers'][0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240617 15:39:34.243" level="INFO">${phone_number} = 00001822750</msg>
+<status status="PASS" starttime="20240617 15:39:34.243" endtime="20240617 15:39:34.243"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${restaurant_name}</var>
+<arg>${restaurant['name']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20240617 15:39:34.248" level="INFO">${restaurant_name} = Kumar Sweet Shop</msg>
+<status status="PASS" starttime="20240617 15:39:34.243" endtime="20240617 15:39:34.248"/>
+</kw>
+<kw name="Run Keyword And Return Status" library="BuiltIn">
+<var>${status}</var>
+<arg>Send Whatsapp Message</arg>
+<arg>${phone_number}</arg>
+<arg>${restaurant_name}</arg>
+<doc>Runs the given keyword with given arguments and returns the status as a Boolean value.</doc>
+<kw name="Send Whatsapp Message">
+<arg>${phone_number}</arg>
+<arg>${restaurant_name}</arg>
+<kw name="Click" library="RPA.Windows">
+<arg>id:SearchQueryTextBox</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<msg timestamp="20240617 15:39:34.260" level="INFO">Getting element with locator: id:SearchQueryTextBox</msg>
+<msg timestamp="20240617 15:39:34.261" level="INFO">Resulted root element: WindowsElement(item=&lt;uiautomation.uiautomation.WindowControl object at 0x000002630E1D9660&gt;, locator='WhatsApp and type:WindowControl', name='WhatsApp', automation_id='', control_type='WindowControl', class_name='ApplicationFrameWindow', left=-9, right=1929, top=-9, bottom=1029, width=1938, height=1038, xcenter=960, ycenter=510)</msg>
+<msg timestamp="20240617 15:39:34.261" level="INFO">Locator 'id:SearchQueryTextBox' produced matcher: MatchObject(locators=[('AutomationId', 'SearchQueryTextBox', 0)], _classes=set(), max_level=0)</msg>
+<msg timestamp="20240617 15:39:34.353" level="INFO">Returning element: WindowsElement(item=&lt;uiautomation.uiautomation.EditControl object at 0x000002630E1D9B10&gt;, locator='id:SearchQueryTextBox', name='Search or start a new chat', automation_id='SearchQueryTextBox', control_type='EditControl', class_name='TextBox', left=86, right=572, top=130, bottom=170, width=486, height=40, xcenter=329, ycenter=150)</msg>
+<status status="PASS" starttime="20240617 15:39:34.248" endtime="20240617 15:39:34.918"/>
+</kw>
+<kw name="Press Keys" library="RPA.Desktop">
+<arg>ctrl</arg>
+<arg>a</arg>
+<doc>Press multiple keys down simultaneously.</doc>
+<msg timestamp="20240617 15:39:34.918" level="INFO">Pressing keys: Key.ctrl, 'a'</msg>
+<status status="PASS" starttime="20240617 15:39:34.918" endtime="20240617 15:39:34.925"/>
+</kw>
+<kw name="Send Keys" library="RPA.Windows">
+<arg>id:SearchQueryTextBox</arg>
+<arg>${phone_number}</arg>
+<tag>action</tag>
+<tag>keyboard</tag>
+<doc>Send keys to desktop, current window or to Control element
+defined by given locator.</doc>
+<msg timestamp="20240617 15:39:34.934" level="INFO">Getting element with locator: id:SearchQueryTextBox</msg>
+<msg timestamp="20240617 15:39:34.934" level="INFO">Resulted root element: WindowsElement(item=&lt;uiautomation.uiautomation.WindowControl object at 0x000002630E1D9660&gt;, locator='WhatsApp and type:WindowControl', name='WhatsApp', automation_id='', control_type='WindowControl', class_name='ApplicationFrameWindow', left=-9, right=1929, top=-9, bottom=1029, width=1938, height=1038, xcenter=960, ycenter=510)</msg>
+<msg timestamp="20240617 15:39:34.934" level="INFO">Locator 'id:SearchQueryTextBox' produced matcher: MatchObject(locators=[('AutomationId', 'SearchQueryTextBox', 0)], _classes=set(), max_level=0)</msg>
+<msg timestamp="20240617 15:39:35.012" level="INFO">Returning element: WindowsElement(item=&lt;uiautomation.uiautomation.EditControl object at 0x000002630E1DA260&gt;, locator='id:SearchQueryTextBox', name='Search or start a new chat', automation_id='SearchQueryTextBox', control_type='EditControl', class_name='TextBox', left=86, right=572, top=130, bottom=170, width=486, height=40, xcenter=329, ycenter=150)</msg>
+<msg timestamp="20240617 15:39:35.032" level="INFO">Sending keys '00001822750' to element: ControlType: EditControl    ClassName: TextBox    AutomationId: SearchQueryTextBox    Rect: (86,130,572,170)[486x40]    Name: 'Search or start a new chat'    Handle: 0x0(0)</msg>
+<status status="PASS" starttime="20240617 15:39:34.925" endtime="20240617 15:39:35.705"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>3sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20240617 15:39:38.707" level="INFO">Slept 3 seconds</msg>
+<status status="PASS" starttime="20240617 15:39:35.705" endtime="20240617 15:39:38.707"/>
+</kw>
+<kw name="Click" library="RPA.Windows">
+<arg>id:ChatsListItem</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<msg timestamp="20240617 15:39:38.707" level="INFO">Getting element with locator: id:ChatsListItem</msg>
+<msg timestamp="20240617 15:39:38.707" level="INFO">Resulted root element: WindowsElement(item=&lt;uiautomation.uiautomation.WindowControl object at 0x000002630E1D9660&gt;, locator='WhatsApp and type:WindowControl', name='WhatsApp', automation_id='', control_type='WindowControl', class_name='ApplicationFrameWindow', left=-9, right=1929, top=-9, bottom=1029, width=1938, height=1038, xcenter=960, ycenter=510)</msg>
+<msg timestamp="20240617 15:39:38.707" level="INFO">Locator 'id:ChatsListItem' produced matcher: MatchObject(locators=[('AutomationId', 'ChatsListItem', 0)], _classes=set(), max_level=0)</msg>
+<msg timestamp="20240617 15:39:48.898" level="INFO">2024-06-17 15:39:48.898 locators.py[274] _get_control_from_params -&gt; Find Control Timeout(10s): {AutomationId: 'ChatsListItem'}</msg>
+<msg timestamp="20240617 15:39:48.900" level="FAIL">ElementNotFound: Element not found with locator 'id:ChatsListItem'</msg>
+<status status="FAIL" starttime="20240617 15:39:38.707" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Click" library="RPA.Windows">
+<arg>id:InputBarTextBox</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:48.900" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Press Keys" library="RPA.Desktop">
+<arg>ctrl</arg>
+<arg>v</arg>
+<doc>Press multiple keys down simultaneously.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:48.900" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>5sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:48.900" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Send Keys" library="RPA.Windows">
+<arg>id:CaptionEditBox</arg>
+<arg>Hello, ${restaurant_name}</arg>
+<tag>action</tag>
+<tag>keyboard</tag>
+<doc>Send keys to desktop, current window or to Control element
+defined by given locator.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:48.900" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:48.900" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Click" library="RPA.Windows">
+<arg>id:SubmitButton</arg>
+<tag>action</tag>
+<tag>mouse</tag>
+<doc>Mouse click on element matching given locator.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:48.900" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>2sec</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20240617 15:39:48.900" endtime="20240617 15:39:48.900"/>
+</kw>
+<status status="FAIL" starttime="20240617 15:39:34.248" endtime="20240617 15:39:48.900"/>
+</kw>
+<msg timestamp="20240617 15:39:48.900" level="INFO">${status} = False</msg>
+<status status="PASS" starttime="20240617 15:39:34.248" endtime="20240617 15:39:48.900"/>
+</kw>
+<kw name="Run Keyword Unless" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Log Error</arg>
+<arg>${restaurant}</arg>
+<doc>*DEPRECATED since RF 5.0. Use Native IF/ELSE or `Run Keyword If` instead.*</doc>
+<msg timestamp="20240617 15:39:48.915" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<kw name="Log Error">
+<arg>${restaurant}</arg>
+<kw name="Get File" library="OperatingSystem">
+<var>${errors}</var>
+<arg>${ERROR_FILE_PATH}</arg>
+<doc>Returns the contents of a specified file.</doc>
+<msg timestamp="20240617 15:39:48.915" level="INFO" html="true">Getting file '&lt;a href="file://C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json"&gt;C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json&lt;/a&gt;'.</msg>
+<msg timestamp="20240617 15:39:48.915" level="INFO">${errors} = [{"name": "Cuisine De Saffron Leaf", "address": "Shop 14, Pacific Hill, Mussoorie Diversion, Malsi, Dehradun", "phoneNumbers": ["91940001791"]}]</msg>
+<status status="PASS" starttime="20240617 15:39:48.915" endtime="20240617 15:39:48.915"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${errors}</var>
+<arg>json.loads('''${errors}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240617 15:39:48.915" level="INFO">${errors} = [{'name': 'Cuisine De Saffron Leaf', 'address': 'Shop 14, Pacific Hill, Mussoorie Diversion, Malsi, Dehradun', 'phoneNumbers': ['91940001791']}]</msg>
+<status status="PASS" starttime="20240617 15:39:48.915" endtime="20240617 15:39:48.915"/>
+</kw>
+<kw name="Append To List" library="Collections">
+<arg>${errors}</arg>
+<arg>${restaurant}</arg>
+<doc>Adds ``values`` to the end of ``list``.</doc>
+<status status="PASS" starttime="20240617 15:39:48.915" endtime="20240617 15:39:48.915"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${errors}</var>
+<arg>json.dumps(${errors})</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20240617 15:39:48.932" level="INFO">${errors} = [{"name": "Cuisine De Saffron Leaf", "address": "Shop 14, Pacific Hill, Mussoorie Diversion, Malsi, Dehradun", "phoneNumbers": ["91940001791"]}, {"name": "Kumar Sweet Shop", "address": "R1, Rajpur Roa...</msg>
+<status status="PASS" starttime="20240617 15:39:48.915" endtime="20240617 15:39:48.932"/>
+</kw>
+<kw name="Create File" library="OperatingSystem">
+<arg>${ERROR_FILE_PATH}</arg>
+<arg>${errors}</arg>
+<doc>Creates a file with the given content and encoding.</doc>
+<msg timestamp="20240617 15:39:48.932" level="INFO" html="true">Created file '&lt;a href="file://C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json"&gt;C:\Users\anshu\OneDrive\Desktop\code\WhatsApp Robocorp Robot\error.json&lt;/a&gt;'.</msg>
+<status status="PASS" starttime="20240617 15:39:48.932" endtime="20240617 15:39:48.932"/>
+</kw>
+<status status="PASS" starttime="20240617 15:39:48.915" endtime="20240617 15:39:48.932"/>
+</kw>
+<status status="PASS" starttime="20240617 15:39:48.915" endtime="20240617 15:39:48.932"/>
+</kw>
+<status status="PASS" starttime="20240617 15:39:34.242" endtime="20240617 15:39:48.932"/>
+</iter>
+<status status="PASS" starttime="20240617 15:39:19.455" endtime="20240617 15:39:48.932"/>
+</for>
+<status status="PASS" starttime="20240617 15:39:13.904" endtime="20240617 15:39:48.932"/>
+</test>
+<doc>Template robot main suite.</doc>
+<status status="PASS" starttime="20240617 15:39:12.699" endtime="20240617 15:39:48.948"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20240617 15:39:34.197" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+<msg timestamp="20240617 15:39:48.915" level="WARN">Keyword 'BuiltIn.Run Keyword Unless' is deprecated. </msg>
+</errors>
+</robot>

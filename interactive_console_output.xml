@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.10.12 on win32)" generated="20240611 19:42:53.444" rpa="false" schemaversion="4">
+<suite id="s1" name="Robot Interactive Console" source="c:\Users\anshu\.vscode\extensions\robocorp.robotframework-lsp-1.12.0\src\robotframework_ls\vendored\robotframework_interactive\robot_interactive_console.robot">
+<test id="s1-t1" name="Default Task/Test" line="5">
+<kw name="Interpreter Main Loop" library="MainLoop">
+<kw name="Get File">
+<var>${json_content}</var>
+<arg>${JSON_FILE_PATH}</arg>
+<msg timestamp="20240611 19:42:53.946" level="FAIL">No keyword with name 'Get File' found. Did you mean:
+    BuiltIn.Get Time</msg>
+<status status="FAIL" starttime="20240611 19:42:53.946" endtime="20240611 19:42:53.946"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${restaurants}</var>
+<arg>json.loads('''${json_content}''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20240611 19:42:53.946" endtime="20240611 19:42:53.946"/>
+</kw>
+<kw name="Windows Run">
+<arg>whatsapp.exe.lnk</arg>
+<status status="NOT RUN" starttime="20240611 19:42:53.947" endtime="20240611 19:42:53.947"/>
+</kw>
+<kw name="Control Window">
+<arg>WhatsApp</arg>
+<status status="NOT RUN" starttime="20240611 19:42:53.948" endtime="20240611 19:42:53.948"/>
+</kw>
+<for flavor="IN">
+<var>${restaurant}</var>
+<value>@{restaurants}</value>
+<iter>
+<var name="${restaurant}"/>
+<kw name="Set Variable" library="BuiltIn">
+<var>${phone_number}</var>
+<arg>${restaurant['phoneNumbers'][0]}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240611 19:42:53.948" endtime="20240611 19:42:53.948"/>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<var>${restaurant_name}</var>
+<arg>${restaurant['name']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="NOT RUN" starttime="20240611 19:42:53.948" endtime="20240611 19:42:53.948"/>
+</kw>
+<kw name="Run Keyword And Continue On Failure" library="BuiltIn">
+<arg>Send Whatsapp Message</arg>
+<arg>${phone_number}</arg>
+<arg>${restaurant_name}</arg>
+<doc>Runs the keyword and continues execution even if a failure occurs.</doc>
+<status status="NOT RUN" starttime="20240611 19:42:53.948" endtime="20240611 19:42:53.948"/>
+</kw>
+<status status="NOT RUN" starttime="20240611 19:42:53.948" endtime="20240611 19:42:53.948"/>
+</iter>
+<status status="NOT RUN" starttime="20240611 19:42:53.948" endtime="20240611 19:42:53.948"/>
+</for>
+<status status="PASS" starttime="20240611 19:42:53.475" endtime="20240611 19:42:57.904"/>
+</kw>
+<status status="PASS" starttime="20240611 19:42:53.459" endtime="20240611 19:42:57.904"/>
+</test>
+<status status="PASS" starttime="20240611 19:42:53.444" endtime="20240611 19:42:57.905"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robot Interactive Console">Robot Interactive Console</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
