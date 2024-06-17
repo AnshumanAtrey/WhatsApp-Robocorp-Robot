@@ -41,6 +41,8 @@ Here's an example of how your `data.json` might look:
 
 Create a shortcut of your whatsapp.exe in a folder and add that folder path to System Settings > Environment Variable > Path. (If you can't find the file path of WhatsApp, open Task Manager, right-click on WhatsApp, and open the file path, then create its shortcut.)
 
+Copy the video file before running the code.
+
 If you want to edit the caption of the video, go to line 36 of `tasks.robot`
 
 ## Logging
